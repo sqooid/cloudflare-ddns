@@ -14,18 +14,22 @@ def current_ip():
 
 def set_cf_ip(cf: Cloudflare, domain: str, ip: str):
     records = cf.dns.records.list(zone_id=zone_id)
-    record_id = None
-    for record in records:
-        if record.name == domain:
-            record_id = record.id
+    record = None
+    for r in records:
+        if r.name == domain:
+            record = r
             break
 
-    if record_id is None:
+    if record is None or record.id is None:
         print("Record not found")
         return
 
+    if record.content == ip:
+        print(f"{domain} is already set to {ip}")
+        return
+
     print(f"Updating {domain} to {ip}")
-    cf.dns.records.update(record_id, zone_id=zone_id, content=ip, name=domain, type="A")
+    cf.dns.records.update(record.id, zone_id=zone_id, content=ip, name=domain, type="A")
 
 
 if __name__ == "__main__":
