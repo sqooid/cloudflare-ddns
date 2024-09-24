@@ -1,10 +1,8 @@
 #!/bin/bash
 
-dir=$(dirname $0)
-
 set -a
-. "$dir/.env"
-. "$dir/.venv/bin/activate"
+. .env"
+. .venv/bin/activate"
 set +a
 
-python3 "$dir/ddns.py"
+python3 "ddns.py"
