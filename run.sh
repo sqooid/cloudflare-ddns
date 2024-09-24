@@ -5,4 +5,4 @@ set -a
 . .venv/bin/activate"
 set +a
 
-python3 "ddns.py"
+.venv/bin/python3 "ddns.py"
