@@ -21,4 +21,4 @@ ${log_path} {
 EOF
 
 # Install crontab
-(crontab -l 2>/dev/null; echo "* * * * * cd ${dir} && ./run.sh >> /var/log/cloudflare-ddns.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "*/5 * * * * cd ${dir} && ./run.sh >> /var/log/cloudflare-ddns.log 2>&1") | crontab -
